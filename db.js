@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 
 let sequelize = null;
 if(process.env.PORT) {
-    sequelize = new Sequelize(process.env.PORT);
+    sequelize = new Sequelize(process.env.DATABASE_URL);
 } else {
     sequelize = new Sequelize('memory-db', 'username', 'password', {
         dialect: 'sqlite',
