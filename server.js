@@ -13,11 +13,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/api/v1', router);
 
-// server the index page
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, './build', 'index.html'));
-});
-
 
 
 router.route('/positions')
@@ -33,7 +28,10 @@ router.route('/positions')
 });
 
 
-
+// server the index page
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, './build', 'index.html'));
+});
 
 
 // Launch server
