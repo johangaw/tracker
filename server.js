@@ -1,8 +1,12 @@
+"use strict";
+
 const express = require('express');
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const app = express();
 const router = express.Router();
-const port = process.env.PORT || 3000;
+const models = require('./db.js');
+
+const port = process.env.PORT || 5000;
 
 app.use(express.static('./build'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -11,18 +15,24 @@ app.use('/api/v1', router);
 
 // server the index page
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, './build', 'index.html'));
+    res.sendFile(path.join(__dirname, './build', 'index.html'));
 });
 
 
 
 router.route('/positions')
-    .get((req, res) => {
-        res.json({ data: 'Hello World!' });
+.get((req, res) => {
+    models.Position.findAll().then(positions => {
+        res.json(positions);
     })
-    .post((req, res) => {
-        res.json({ data: req.body.name });
+})
+.post((req, res) => {
+    models.Position.create(req.body).then(position => {
+        res.json(position);
     });
+});
+
+
 
 
 
