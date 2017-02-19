@@ -23,7 +23,7 @@ router.route('/positions')
 })
 .post((req, res) => {
     models.Position.create(req.body).then(position => {
-        res.json(position);
+        res.json(position);        
     });
 });
 
