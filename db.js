@@ -19,9 +19,10 @@ if(process.env.PORT) {
 // =============================================
 module.exports = {
     'Position': sequelize.define('position', {
-        long: { type: Sequelize.STRING },
-        lat: { type: Sequelize.STRING },
-        time: { type: Sequelize.INTEGER }
+        longitude: { type: Sequelize.DOUBLE },
+        latitude: { type: Sequelize.DOUBLE },
+        speed: { type: Sequelize.DOUBLE },
+        timestamp: { type: Sequelize.INTEGER },
     })
 }
 
